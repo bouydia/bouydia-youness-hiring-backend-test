@@ -15,8 +15,8 @@
 <p>Before you begin, ensure you have met the following requirements:</p>
 
 <ul>
-  <li>Node.js installed (version X.X.X or higher)</li>
-  <li>MongoDB installed and running</li>
+  <li>Node.js installed (v18.17.1)</li>
+  <li>nodemoon installed globaly</li>
   <li>Git for version control</li>
 </ul>
 
@@ -24,15 +24,15 @@
 
 <ol>
   <li>Clone the repository:
-    <pre><code>git clone https://github.com/your-username/your-repo-name.git</code></pre>
+    <pre><code>git clone [https://github.com/bouydia/bouydia-youness-hiring-backend-test]</code></pre>
   </li>
   <li>Navigate to the project directory:
-    <pre><code>cd your-repo-name</code></pre>
+    <pre><code>cd bouydia-youness-hiring-backend-test</code></pre>
   </li>
   <li>Install dependencies:
     <pre><code>npm install</code></pre>
   </li>
-  <li>Create a <code>.env.local</code> file in the root directory and add your MongoDB URI:
+  <li>Create a <code>.env</code> file in the root directory and add your MongoDB URI:
     <pre><code>MONGODB_URI=your_mongodb_uri_here</code></pre>
   </li>
 </ol>
@@ -41,7 +41,7 @@
 
 <p>To start the server, run:</p>
 
-<pre><code>npm start</code></pre>
+<pre><code>npm run server</code></pre>
 
 <p>The API will be available at <code>http://localhost:3000</code> (or the port specified in your environment variables).</p>
 
@@ -50,11 +50,13 @@
 <p>Describe your API endpoints here. For example:</p>
 
 <ul>
-  <li><code>GET /api/items</code>: Retrieve all items</li>
-  <li><code>POST /api/items</code>: Create a new item</li>
-  <li><code>GET /api/items/:id</code>: Retrieve a specific item</li>
-  <li><code>PUT /api/items/:id</code>: Update a specific item</li>
-  <li><code>DELETE /api/items/:id</code>: Delete a specific item</li>
+  <li><code>POST /api/auth/login</code>: login the user</li>
+  <li><code>GET /api/auth/register</code>: register new user</li>
+  
+  <li><code>GET /api/article/</code>: Retrieve all the articles</li>
+  <li><code>POST /api/article/</code>: Create one article</li>
+
+  <li><code>GET /api/user/:id</code>: Retrieve a specific User data</li>
 </ul>
 
 <h2>Configuration</h2>
