@@ -78,8 +78,8 @@ PORT=3000 (optional, defaults to 3000)</code></pre>
 
 <h2>License</h2>
 
-<p>[Specify your license here, e.g., MIT, GPL, etc.]</p>
+<p>MIT</p>
 
 <h2>Contact</h2>
 
-<p>If you have any questions or feedback, please contact [Your Name] at [your-email@example.com].</p>
+<p>If you have any questions or feedback, please contact  at younessbouydia@gmail.com</p>
