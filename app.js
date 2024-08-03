@@ -3,6 +3,12 @@ require('dotenv').config()
 const connectDB = require('./config/connectDB')
 const cors=require('cors')
 const { errorHandler, notFound } = require('./middlewares/error')
+
+
+const { detectDuplicates, printDuplicates } = require('./utils/duplicateDetector');
+
+
+
 // Init the app
 const app = express()
 
@@ -20,7 +26,6 @@ app.use(express.json())
 app.use('/api/auth', require('./routes/authRoute'))
 app.use('/api/article', require('./routes/articleRoute'))
 app.use('/api/user', require('./routes/userRoute'))
-
 
 // Error Handler Middleware
 app.use(notFound)

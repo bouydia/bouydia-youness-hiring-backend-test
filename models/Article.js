@@ -10,8 +10,7 @@ const ArticleSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 2,
-      maxlength: 200,
+      maxlength: 100000000,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -33,7 +32,7 @@ const Article = mongoose.model('Article', ArticleSchema)
 // Validate create Article
 function validateCreateArticle(obj) {
   const schema = Joi.object({
-    text: Joi.string().trim().required(),
+    text: Joi.string().trim().required().max(100000),
   })
   return schema.validate(obj)
 }
