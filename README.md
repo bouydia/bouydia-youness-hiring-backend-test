@@ -1,87 +1,238 @@
-<h1>Express.js MongoDB REST API</h1>
 
-<p>This project is a REST API built with Express.js and MongoDB. It provides a robust backend solution for handling HTTP requests and interacting with a MongoDB database.</p>
+# REST API Documentation
 
-<h2>Features</h2>
+## Table of Contents
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Base URL](#base-url)
+- [Authentication](#authentication)
+- [Endpoints](#endpoints)
+  - [User Endpoints](#user-endpoints)
+  - [Article Endpoints](#article-endpoints)
+- [Error Handling](#error-handling)
+- [Examples](#examples)
+- [License](#license)
 
-<ul>
-  <li>RESTful API endpoints</li>
-  <li>MongoDB integration for data persistence</li>
-  <li>Environment variable configuration using .env.local</li>
-</ul>
+## Introduction
+Welcome to the REST API documentation. This API allows users to manage users and articles in a web application. The API is built with Node.js and Express, and it follows RESTful principles.
 
-<h2>Prerequisites</h2>
+## Prerequisites
+Before you begin, ensure you have met the following requirements:
 
-<p>Before you begin, ensure you have met the following requirements:</p>
+Node.js installed (v18.17.1) \
+nodemoon installed globaly    ```sh
+    npm i -g nodemoon
+    ```
+for server auto reload \
+Git for version control 
 
-<ul>
-  <li>Node.js installed (v18.17.1)</li>
-  <li>nodemoon installed globaly</li>
-  <li>Git for version control</li>
-</ul>
 
-<h2>Installation</h2>
 
-<ol>
-  <li>Clone the repository:
-    <pre><code>git clone [https://github.com/bouydia/bouydia-youness-hiring-backend-test]</code></pre>
-  </li>
-  <li>Navigate to the project directory:
-    <pre><code>cd bouydia-youness-hiring-backend-test</code></pre>
-  </li>
-  <li>Install dependencies:
-    <pre><code>npm install</code></pre>
-  </li>
-  <li>Create a <code>.env</code> file in the root directory and add your MongoDB URI:
-    <pre><code>MONGODB_URI=your_mongodb_uri_here</code></pre>
-  </li>
-</ol>
+## Installation
+1. Clone the repository:
+    ```sh
+    git clone [https://github.com/bouydia/bouydia-youness-hiring-backend-test]
+    ```
 
-<h2>Usage</h2>
+2. Navigate to the project directory:
+    ```sh
+    cd bouydia-youness-hiring-backend-test
+    ```
 
-<p>To start the server, run:</p>
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-<pre><code>npm run server</code></pre>
+4. remove `.local` from `.env.local` file and put your mongodb URI and change the secret or PORT like you want:
+    ```sh
+    MONGODB_URI=your_mongodb_uri_here
+    PORT=3000
+    SECRET=secret
+    NODE_ENV=development 
+    ```
 
-<p>The API will be available at <code>http://localhost:3000</code> (or the port specified in your environment variables).</p>
 
-<h2>API Endpoints</h2>
+## Usage
 
-<p>Describe your API endpoints here. For example:</p>
+To start the server, run:
+ ```sh
+npm run server
+```
+The API will be available at http://localhost:3000 (or the port specified in your environment variables).
 
-<ul>
-  <li><code>POST /api/auth/login</code>: login the user</li>
-  <li><code>GET /api/auth/register</code>: register new user</li>
+
+
+
+
+## Base URL
+The base URL for all API requests is:
+```
+http://localhost:3000/api
+```
+
+## Authentication
+This API uses token-based authentication. To access protected endpoints, include the following header in your requests:
+
+```
+Authorization: Bearer <your-token-here>
+```
+
+## Endpoints
+
+### Authentication Endpoints
+
+#### Create a New User
+```
+POST /auth/register
+```
+**Request Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+```
+**Response:**
+```json
+{
   
-  <li><code>GET /api/article/</code>: Retrieve all the articles</li>
-  <li><code>POST /api/article/</code>: Create one article</li>
+  "message": "your registered successfylly please login"
+}
+```
+#### Login user
+```
+POST /auth/login
+```
+**Request Body:**
+```json
+{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+```
+**Response:**
+```json
+{
+  "_id": "66af2f0921bf1333d9044b05",
+  "username": "johndoe",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWYyZjA5MjFiZjEzMzNkOTA0NGIwNSIsImlhdCI6MTcyMjc1OTI5Nn0.IBTL-un5Tui9DTNdXGen7oE-THoA38DGemm9K__dL6c"
+}
+```
+#### Get a User by ID
+```
+GET /user/:id
+```
+**Response:**
+```json
+{
+  "user": {
+    "_id": "66acb1ff28a08aeffbe26dd0",
+    "username": "johndoe",
+    "email": "johndoe@example.com",
+    "articles": [
+      {.....}
+    ],
+    "id": "66acb1ff28a08aeffbe26dd0"
+  }
+}
+```
 
-  <li><code>GET /api/user/:id</code>: Retrieve a specific User data</li>
-</ul>
 
-<h2>Configuration</h2>
+### Article Endpoints
 
-<p>The application uses environment variables for configuration. Make sure to set up your <code>.env.local</code> file with the necessary variables:</p>
+#### Create a New Article
+```
+POST /article
 
-<pre><code>MONGODB_URI=your_mongodb_uri_here
-PORT=3000 (optional, defaults to 3000)</code></pre>
+```
+Authentication: Protected route (requires authentication)
 
-<h2>Contributing</h2>
 
-<p>Contributions to this project are welcome. Please follow these steps:</p>
+**Request Body:**
+```json
+{
+  "text": "New Article",
+}
+```
+**Response:**
+```json
+{
+  "article": {
+    "text": "New Article",
+    "user": "66acb1ff28a08aeffbe26dd0",
+    "_id": "66af36f01e3af97a8471986a",
+    "createdAt": "2024-08-04T08:08:16.990Z",
+    "updatedAt": "2024-08-04T08:08:16.990Z",
+    "id": "66af36f01e3af97a8471986a"
+  }
+}
+```
 
-<ol>
-  <li>Fork the repository</li>
-  <li>Create a new branch (<code>git checkout -b feature/your-feature-name</code>)</li>
-  <li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-  <li>Push to the branch (<code>git push origin feature/your-feature-name</code>)</li>
-  <li>Create a new Pull Request</li>
-</ol>
+#### Get All Articles
+```
+GET /article
+```
+**Response:**
+```json
+[
+  
+  {
+    "_id": "66af36f01e3af97a8471986a",
+    "text": "article 1",
+    "user": "66acb1ff28a08aeffbe26dd0",
+    "createdAt": "2024-08-04T08:08:16.990Z",
+    "updatedAt": "2024-08-04T08:08:16.990Z",
+    "id": "66af36f01e3af97a8471986a"
+  },
+  {
+    "_id": "66af36f01e3af97a8471986a",
+    "text": "article 2",
+    "user": "66acb1ff28a08aeffbe26dd0",
+    "createdAt": "2024-08-04T08:08:16.990Z",
+    "updatedAt": "2024-08-04T08:08:16.990Z",
+    "id": "66af36f01e3af97a8471986a"
+  },
+]
+```
 
-<h2>License</h2>
 
-<p>MIT</p>
+## Error Handling
+Errors are returned in the following format:
+```json
+{
+  "message": "Error message here"
+}
+```
 
-<h2>Contact</h2>
+### Common Errors
+- `400 Bad Request`: The request was invalid or cannot be served.
+- `401 Unauthorized`: Authentication credentials were missing or incorrect.
+- `404 Not Found`: The requested resource could not be found.
+- `500 Internal Server Error`: An error occurred on the server.
 
-<p>If you have any questions or feedback, please contact  at younessbouydia@gmail.com</p>
+## Examples
+
+### Create a New User
+```bash
+curl -X POST http://localhost:3000/api/auth/register
+  -H "Content-Type: application/json" \
+  -d '{
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "password": "password123"
+      }'
+```
+
+### Create New Article
+```bash
+curl -X POST http://localhost:3000/api/article
+  -H "Authorization: Bearer <your-token-here>"
+```
+
+
+## License
+This project is licensed under the MIT License
