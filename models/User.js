@@ -5,7 +5,6 @@ const { Schema } = mongoose
 
 const UserSchema = new Schema(
   {
-
     username: {
       type: String,
       required: true,
@@ -28,12 +27,12 @@ const UserSchema = new Schema(
       trim: true,
       minlength: 8,
     },
-   
   },
   {
-    timestamp: true,
+    timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    versionKey: false,
   }
 )
 

@@ -5,7 +5,6 @@ const { Schema } = mongoose
 
 const ArticleSchema = new Schema(
   {
-
     text: {
       type: String,
       required: true,
@@ -22,6 +21,7 @@ const ArticleSchema = new Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    versionKey: false,
   }
 )
 
@@ -32,7 +32,7 @@ const Article = mongoose.model('Article', ArticleSchema)
 // Validate create Article
 function validateCreateArticle(obj) {
   const schema = Joi.object({
-    text: Joi.string().trim().required().max(100000),
+    text: Joi.string().trim().required(),
   })
   return schema.validate(obj)
 }
