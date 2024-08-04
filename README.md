@@ -16,7 +16,7 @@
 - [License](#license)
 
 ## Introduction
-Welcome to the REST API documentation. This API allows users to manage users and articles in a web application. The API is built with Node.js and Express, and it follows RESTful principles.
+Welcome to the REST API documentation. This API allows users to manage thier articles in a web application. The API is built with Node.js and Express, and it follows RESTful principles.
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
