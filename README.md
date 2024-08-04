@@ -22,9 +22,10 @@ Welcome to the REST API documentation. This API allows users to manage thier art
 Before you begin, ensure you have met the following requirements:
 
 Node.js installed (v18.17.1) \
-nodemoon installed globaly    ```sh
-    npm i -g nodemoon
-    ```
+nodemoon installed globaly 
+```sh
+  npm i -g nodemoon
+```
 for server auto reload \
 Git for version control 
 
