@@ -9,7 +9,7 @@ const hashParagraph = paragraph => {
 // Function to find duplicate paragraphs
 const findDuplicateParagraphs = async (text) => {
   try {
-    const paragraphs = text.split('\n') // Assuming paragraphs are separated by two oneline
+    const paragraphs = text.split('\n') // Assuming paragraphs are separated by  oneline
     const hashMap = new Map()
     const duplicates = []
 
