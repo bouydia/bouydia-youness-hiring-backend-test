@@ -1,59 +1,61 @@
 const asyncHandler = require('express-async-handler')
 const { Article } = require('../models/Article')
-const { crawlPage } = require('../utils/crawler ')
-
+const { crawlPage } = require('../utils/crawler ');
+const { findDuplicateParagraphs } = require('../utils/duplicateDetector');
 
 /**-------------------------------
  * @desc compare with data from crawled websites 
  * @route v1/api/compare-with-crawled
  * @method GET
- * @access private (only login users)
+ * @access private (only login user)
  *---------------------------------*/
+
 function transformPagesToArray(pages) {
   return Object.values(pages).flatMap(page => page.content)
 }
+
 function findSimilarTexts(articleTexts, pageContents) {
   const similarities = [];
 
-  for (const [articleId, articleText] of articleTexts) {
+  for (const {_id,text} of articleTexts) {
     for (const pageContent of pageContents) {
-      // Simple similarity check: if one text includes the other
-      if (articleText.includes(pageContent) || pageContent.includes(articleText)) {
+      //const combinedContent = `${pageContent}\n${text}`
+      //if (findDuplicateParagraphs(combinedContent).length > 0) {
         similarities.push({
-          articleId,
-          articleText,
-          pageContent
-        });
-      }
+          _id,
+          text,
+          pageContent,
+        })
+      //}
     }
   }
   return similarities
 }
 module.exports.compareCtr = asyncHandler(async (req, res) => {
   const baseUrl = 'http://wagslane.dev'
-  // Assuming you have already fetched the articles
-  const articles = await Article.find()
-  // Create a Map of article texts
-  const articleTextMap = new Map()
-  articles.forEach(article => {
-    articleTextMap.set(article._id.toString(), article.text)
-  })
   
+  const articles = await Article.find({
+    user:req.user.id,
+  })
+
   const pages = await crawlPage(baseUrl, baseUrl, {})
+  
   // Transform pages to array
-  const pageContents = transformPagesToArray(pages)
+ const pageContents = transformPagesToArray(pages)
 
   // Find similarities
-   const similarities = findSimilarTexts(articleTextMap, pageContents)
+  const similarities = findSimilarTexts(articles, pageContents)
 
   // Output results
-  console.log('Similar texts found:')
+  /* console.log('Similar texts found:')
   similarities.forEach(sim => {
-    console.log(`Article ID: ${sim.articleId}`)
-    console.log(`Article Text: ${sim.articleText}`)
+    console.log(`Article ID: ${sim._id}`)
+    console.log(`Article Text: ${sim.text}`)
     console.log(`Page Content: ${sim.pageContent}`)
     console.log('---') 
-  })  
+  })   */
+  
+  
   //send a response to client
   res.status(201).json({ similarities })
 })

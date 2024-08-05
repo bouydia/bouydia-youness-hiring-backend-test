@@ -1,8 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const { User } = require('../models/User')
 
-
-
 /**-------------------------------
  * @desc get user profile
  * @route v1/api/users/:id
