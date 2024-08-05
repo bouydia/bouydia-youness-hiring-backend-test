@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const { Article } = require('../models/Article')
+const { crawlPage } = require('../utils/crawler ')
 
 
 /**-------------------------------
@@ -9,7 +10,10 @@ const { Article } = require('../models/Article')
  * @access private (only login users)
  *---------------------------------*/
 module.exports.compareCtr = asyncHandler(async (req, res) => {
+  const baseUrl = 'http://wagslane.dev'
+
+  const pages = await crawlPage(baseUrl, baseUrl, {})
 
   //send a response to client
-  res.status(201).json({ message: 'Compared Data' })
+  res.status(201).json({ pages })
 })
