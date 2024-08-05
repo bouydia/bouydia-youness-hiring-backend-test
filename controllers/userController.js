@@ -5,7 +5,7 @@ const { User } = require('../models/User')
 
 /**-------------------------------
  * @desc get user profile
- * @route /api/users/:id
+ * @route v1/api/users/:id
  * @method GET
  * @access public
  *---------------------------------*/

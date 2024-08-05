@@ -6,7 +6,7 @@ const { generateToken } = require('../utils/generateToken')
 
 /**-------------------------------
  * @desc Register New User
- * @route /api/auth/register
+ * @route v1/api/auth/register
  * @method POST
  * @access public
  *---------------------------------*/
@@ -37,7 +37,7 @@ module.exports.registerUserCtr = asyncHandler(async (req,res) => {
 
 /**-------------------------------
  * @desc login user
- * @route /api/auth/login
+ * @route v1/api/auth/login
  * @method POST
  * @access public
  *---------------------------------*/

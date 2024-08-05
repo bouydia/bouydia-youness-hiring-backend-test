@@ -8,7 +8,7 @@ const { findDuplicateParagraphs } = require('../utils/duplicateDetector')
 
 /**-------------------------------
  * @desc   Create New Article
- * @route  /api/Article/
+ * @route  v1/api/Article/
  * @method POST
  * @access private (only login user)
  *---------------------------------*/
@@ -54,7 +54,7 @@ module.exports.createArticleCtr = asyncHandler(async (req, res) => {
 
 /**-------------------------------
  * @desc   get all Articles
- * @route  /api/Article/
+ * @route  v1/api/Article/
  * @method GET
  * @access public
  *---------------------------------*/
@@ -67,7 +67,7 @@ module.exports.getAllArticlsCtr = asyncHandler(async (req, res) => {
 
 /**-------------------------------
  * @desc   Delete Article
- * @route  /api/article/:id
+ * @route  v1/api/article/:id
  * @method delete
  * @access private (only login user )
  *---------------------------------*/
@@ -90,7 +90,7 @@ module.exports.deleteArticle = asyncHandler(async (req, res) => {
 
 /**-------------------------------
  * @desc   update Article
- * @route  /api/article/:id
+ * @route  v1/api/article/:id
  * @method PUT
  * @access private(only owner)
  *---------------------------------*/
@@ -114,11 +114,6 @@ module.exports.updateArticle = asyncHandler(async (req, res) => {
       .json({ message: 'access denied you are not allowed' })
   }
   
-  //check duplicate
-
-  // Check for duplicates paragraphs within the new article
-  
-  //
   // update Article
   const updatedArticle = await Article.findOneAndUpdate(
     id,
