@@ -16,16 +16,16 @@
 - [License](#license)
 
 ## Introduction
-Welcome to the REST API documentation. This API allows users to manage thier articles in a web application. The API is built with Node.js and Express, and it follows RESTful principles.
+Welcome to the REST API documentation. This API allows users to manage users and articles in a web application. The API is built with Node.js and Express, and it follows RESTful principles.
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
 
 Node.js installed (v18.17.1) \
-nodemoon installed globaly 
+nodemoon installed globaly
 ```sh
-  npm i -g nodemoon
-```
+    npm i -g nodemoon
+ ```
 for server auto reload \
 Git for version control 
 
@@ -145,7 +145,7 @@ GET /user/:id
 
 ### Article Endpoints
 
-#### Create a New Article
+#### Create a New Article (authentication is required))
 ```
 POST /article
 
@@ -199,7 +199,39 @@ GET /article
   },
 ]
 ```
-
+#### Delete Article (authentication is required)
+```
+DELETE /article/:id
+```
+**Response:**
+```json
+{
+  "message": "article has been deleted successfully",
+  "ArticleId": "66af36f01e3af97a8471986a"
+}
+```
+#### Update one Article (authentication is required))
+```
+PUT /article/:id
+```
+**Response:**
+```json
+{
+  "message": "Article has been updated successfully",
+  "updatedArticle": {
+    "_id": "66af36651e3af97a8471985f",
+    "text": "updated",
+    "user": {
+      "_id": "66acb1ff28a08aeffbe26dd0",
+      "username": "test",
+      "email": "test@test.com",
+      "__v": 0
+    },
+    "createdAt": "2024-08-04T08:05:57.460Z",
+    "updatedAt": "2024-08-05T10:44:59.313Z"
+  }
+}
+```
 
 ## Error Handling
 Errors are returned in the following format:
@@ -237,3 +269,15 @@ curl -X POST http://localhost:3000/api/article
 
 ## License
 This project is licensed under the MIT License
+
+
+
+
+
+
+
+
+
+
+
+
