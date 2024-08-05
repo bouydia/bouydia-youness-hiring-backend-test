@@ -17,44 +17,8 @@ function verifyToken(req,res,next) {
     }
 }
 
-function verifyTokenAndAdmin(req, res, next) {
-    verifyToken(req, res, () => {
-        const { isAdmin } = req.user
-        if (!isAdmin) {
-          // 403 forbidden
-          return res.status(403).json({ message: 'not allowed,only admin' })
-        }
-        next()
-    })
 
-}
-function verifyTokenAndUser(req, res, next) {
-  verifyToken(req, res, () => {
-    if (req.user.id==req.params.id) {
-        next()
-    } else {
-      // 403 forbidden
-      return res.status(403).json({ message: 'not allowed,only user himself' })
-    }
-   
-  })
-}
-
-function verifyTokenAndAuthorization(req, res, next) {
-  verifyToken(req, res, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
-      next()
-    } else {
-      // 403 forbidden
-      return res.status(403).json({ message: 'not allowed,only user himself' })
-    }
-   
-  })
-}
 
 module.exports = {
   verifyToken,
-  verifyTokenAndAdmin,
-  verifyTokenAndUser,
-  verifyTokenAndAuthorization,
 }
