@@ -5,9 +5,6 @@ const cors=require('cors')
 const { errorHandler, notFound } = require('./middlewares/error')
 
 
-const { detectDuplicates, printDuplicates } = require('./utils/duplicateDetector');
-
-
 
 // Init the app
 const app = express()

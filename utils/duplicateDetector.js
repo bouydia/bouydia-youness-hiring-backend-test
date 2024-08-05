@@ -27,6 +27,9 @@ const findDuplicateParagraphs = async (text) => {
     console.error('Error:', error)
   }
 }
+
+
+
 module.exports= {
   findDuplicateParagraphs,
 }
@@ -34,22 +37,4 @@ module.exports= {
 
 
 
-  // Use the function with your text file
-/* }(async () => {
-  try {
-    const duplicates = await findDuplicateParagraphs('./content.txt')
-    if (duplicates.length > 0) {
-      console.log('Duplicate paragraphs found:')
-      duplicates.forEach((duplicate, idx) => {
-        console.log(`Duplicate ${idx + 1}:`)
-        console.log(duplicate.paragraph)
-        console.log(`Indexes: ${duplicate.indexes.join(', ')}`)
-        console.log('---------------------------------')
-      })
-    } else {
-      console.log('No duplicate paragraphs found.')
-    }
-  } catch (error) {
-    console.error('Error:', error)
-  }
-})() */
+  
