@@ -20,9 +20,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 // Routes
-app.use('v1/api/auth', require('./routes/authRoute'))
-app.use('v1/api/article', require('./routes/articleRoute'))
-app.use('v1/api/user', require('./routes/userRoute'))
+app.use('/v1/api/auth', require('./routes/authRoute'))
+app.use('/v1/api/article', require('./routes/articleRoute'))
+app.use('/v1/api/user', require('./routes/userRoute'))
+app.use('/v1/api/compare-with-crawled', require('./routes/compareRoute'))
 
 // Error Handler Middleware
 app.use(notFound)
