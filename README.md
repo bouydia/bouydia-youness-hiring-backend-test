@@ -135,9 +135,8 @@ GET /user/:id
     "username": "johndoe",
     "email": "johndoe@example.com",
     "articles": [
-      {.....}
+      {.....}, {.....}
     ],
-    "id": "66acb1ff28a08aeffbe26dd0"
   }
 }
 ```
@@ -163,12 +162,11 @@ Authentication: Protected route (requires authentication)
 ```json
 {
   "article": {
+    "_id": "66af36f01e3af97a8471986a",
     "text": "New Article",
     "user": "66acb1ff28a08aeffbe26dd0",
-    "_id": "66af36f01e3af97a8471986a",
     "createdAt": "2024-08-04T08:08:16.990Z",
     "updatedAt": "2024-08-04T08:08:16.990Z",
-    "id": "66af36f01e3af97a8471986a"
   }
 }
 ```
@@ -187,7 +185,6 @@ GET /article
     "user": "66acb1ff28a08aeffbe26dd0",
     "createdAt": "2024-08-04T08:08:16.990Z",
     "updatedAt": "2024-08-04T08:08:16.990Z",
-    "id": "66af36f01e3af97a8471986a"
   },
   {
     "_id": "66af36f01e3af97a8471986a",
@@ -195,7 +192,6 @@ GET /article
     "user": "66acb1ff28a08aeffbe26dd0",
     "createdAt": "2024-08-04T08:08:16.990Z",
     "updatedAt": "2024-08-04T08:08:16.990Z",
-    "id": "66af36f01e3af97a8471986a"
   },
 ]
 ```
